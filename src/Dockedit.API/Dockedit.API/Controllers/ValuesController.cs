@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Docker.DotNet;
 using Docker.DotNet.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace Dockedit.API.Controllers
 {
@@ -12,15 +13,20 @@ namespace Dockedit.API.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // Default Docker Engine on Windows
-        DockerClient client = new DockerClientConfiguration(
-            new Uri("npipe://./pipe/docker_engine"))
-             .CreateClient();
-        
+        private readonly IConfiguration Configuration;
+        public ValuesController(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
         [HttpGet("GetAllImages")]
         public async Task<List<string>> GetAllImages()
-        {           
+        {
+            var endpoint = Configuration.GetValue<string>("docker_engine", null);
+            // Default Docker Engine on Windows
+            DockerClient client = new DockerClientConfiguration(
+                new Uri(endpoint))
+                 .CreateClient();
             IList<ImagesListResponse> containers = await client.Images.ListImagesAsync(
                 new ImagesListParameters()
                 {
