@@ -15,8 +15,8 @@ namespace Formation.WPF
         {
             try
             {
-                //dbContext.Client.ToList().ForEach(monClient => dbContext.Client.Local.Add(monClient));
-                //Collection = dbContext.Client.Local;
+                dbContext.Client.ToList().ForEach(monClient => dbContext.Client.Local.Add(monClient));
+                Collection = dbContext.Client.Local;
             }
             catch (Exception ex)
             {      
