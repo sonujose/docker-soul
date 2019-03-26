@@ -43,8 +43,8 @@
                       AutoGenerateColumns="False">
             <!--ItemsSource="{Binding Clients}"-->
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nom"        Binding="{Binding Path=Nom}"/>
-                <DataGridTextColumn Header="Profession" Binding="{Binding Path=Profession}"/>
+                <DataGridTextColumn Header="Container" Binding="{Binding Path=Containers}"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"/>
             </DataGrid.Columns>
             </DataGrid>
    </Grid>

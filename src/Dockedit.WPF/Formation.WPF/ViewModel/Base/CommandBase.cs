@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Formation.WPF
@@ -80,7 +81,7 @@ namespace Formation.WPF
             return true;
         }
 
-        protected virtual void Get()
+        protected virtual async Task Get()
         {
             throw new NotImplementedException();
         }
